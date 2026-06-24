@@ -1,0 +1,10 @@
+{
+  "languages": [
+    {
+      "grammar": "lang/d.tmLanguage.json",
+      "name": "D",
+      "scopeName": "source.d",
+      "languageConfiguration": "lang/language-configuration.json"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "schema/schema.json",
+  "id": "io.kiquar.plugin.dlang",
+  "name": "D Support",
+  "mainClass": "io.kiquar.plugin.dlang.Main",
+  "version": "0.1.0",
+  "description": " Xed-Editor extension for the D language.",
+  "author": {
+    "displayName": "KiquarSL",
+    "github": "KiquarSL"
+  },
+  "license": "MIT",
+  "tags": ["d", "lsp", "highlighting"],
+  "minAppVersion": 95,
+  "maxAppVersion": null,
+  "repository": "https://github.com/KonerDev/xed-dlang"
+}

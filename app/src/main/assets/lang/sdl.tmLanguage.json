@@ -1,0 +1,75 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SDL (Simple Declarative Language)",
+	"scopeName": "source.sdl",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#blocks"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "//",
+					"end": "$",
+					"name": "comment.line.double-slash.sdl"
+				},
+				{
+					"begin": "/\\*",
+					"end": "\\*/",
+					"name": "comment.block.sdl"
+				}
+			]
+		},
+		"strings": {
+			"begin": "\"",
+			"end": "\"",
+			"name": "string.quoted.double.sdl",
+			"patterns": [
+				{
+					"match": "\\\\.",
+					"name": "constant.character.escape.sdl"
+				}
+			]
+		},
+		"numbers": {
+			"match": "\\b(\\d+(\\.\\d+)?)\\b",
+			"name": "constant.numeric.sdl"
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\b(true|false)\\b",
+					"name": "constant.language.sdl"
+				},
+				{
+					"match": "\\b(\\w+)\\s*(?=[=:{}])",
+					"name": "entity.name.tag.sdl"
+				}
+			]
+		},
+		"blocks": {
+			"begin": "{",
+			"end": "}",
+			"name": "meta.block.sdl",
+			"patterns": [
+				{
+					"include": "$self"
+				}
+			]
+		}
+	}
+}

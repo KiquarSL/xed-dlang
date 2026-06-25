@@ -3,15 +3,15 @@
   "id": "io.kiquar.plugin.dlang",
   "name": "D Support",
   "mainClass": "io.kiquar.plugin.dlang.Main",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": " Xed-Editor extension for the D language.",
   "author": {
     "displayName": "KiquarSL",
     "github": "KiquarSL"
   },
   "license": "MIT",
-  "tags": ["d", "lsp", "highlighting"],
+  "tags": ["d", "lsp", "sdl", "highlighting"],
   "minAppVersion": 95,
   "maxAppVersion": null,
-  "repository": "https://github.com/KonerDev/xed-dlang"
+  "repository": "https://github.com/KiquarSL/xed-dlang"
 }

@@ -4,7 +4,13 @@
       "grammar": "lang/d.tmLanguage.json",
       "name": "D",
       "scopeName": "source.d",
-      "languageConfiguration": "lang/language-configuration.json"
+      "languageConfiguration": "lang/d-config.json"
+    },
+	{
+      "grammar": "lang/sdl.tmLanguage.json",
+      "name": "SDL",
+      "scopeName": "source.sdl",
+      "languageConfiguration": "lang/sdl-config.json"
     }
   ]
 }

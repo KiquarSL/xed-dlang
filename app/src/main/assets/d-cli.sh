@@ -1,50 +1,68 @@
 #!/bin/bash
-exit 0 # Not implemented
 
 set -e
 
-source "$LOCAL/bin/utils"
+source "utils" 2>/dev/null
 
 info 'Preparing...'
-apt update && apt upgrade -y
-
-get_arch() {
-  case "$(uname -m)" in
-    x86_64)
-      echo "x86_64"
-      ;;
-    aarch64 | arm64)
-      echo "aarch64"
-      ;;
-    *)
-      error "Unsupported architecture: $(uname -m)"
-      exit 1
-      ;;
-  esac
-}
+apt update
 
 install() {
-  info 'Installing D...'
+  info 'Installing DUB (Package manager)...'
+  apt install -y dub
+
+  info "Installing D compilers"
+
+  read -r -p "Install GDC? (GCC-based D compiler) [y/n] " res
+  case "$res" in
+    y|Y|yes|Yes) install_gdc ;;
+    *) echo "Skipping GDC installation..." ;;
+  esac
+
+  read -r -p "Install LDC? (LLVM-based D compiler) [y/n] " res
+  case "$res" in
+    y|Y|yes|Yes) install_ldc ;;
+    *) echo "Skipping LDC installation..." ;;
+  esac
+
   info 'D installed successfully.'
+}
+
+install_gdc() {
+    info "Installing GDC..."
+    apt install -y gdc build-essential
+    info 'GDC installed successfully.'
+}
+
+install_ldc() {
+    info "Installing LDC..."
+    apt install -y ldc build-essential
+    info 'LDC installed successfully.'
 }
 
 uninstall() {
   info 'Uninstalling D...'
-  info 'D installed successfully.'
+  apt remove -y dub
+
+  read -r -p "Uninstall GDC? [y/n] " res
+  case "$res" in
+    y|Y|yes|Yes) apt remove -y gdc ;;
+    *) echo "Skipping GDC uninstallation..." ;;
+  esac
+
+  read -r -p "Uninstall LDC? [y/n] " res
+  case "$res" in
+    y|Y|yes|Yes) apt remove -y ldc ;;
+    *) echo "Skipping LDC uninstallation..." ;;
+  esac
+
+  info 'D uninstalled successfully.'
 }
 
 update() {
-  info 'Updating D...'
-
-  if [ ! -x "$INSTALL_DIR/dlang" ]; then
-    error "D is not installed."
-    exit 1
-  fi
-
-  "$INSTALL_DIR/typst" update
-
-  info 'Typst updated successfully.'
-  exit 0
+  info 'Updating DUB...'
+  apt install dub -y
+  info 'DUB updated successfully.'
 }
 
 case "$1" in
